@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/4400f191cf.js"
+      async
+      crossorigin="anonymous"
+    ></script>
+    <title>FAGIU - Automação Industrial</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        height: 100vh;
+      }
+
+      .titulo,
+      .subtitulo {
+        text-transform: uppercase;
+        margin: 0;
+      }
+
+      header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 5vh;
+      }
+
+      .titulo {
+        font-size: 3.5rem;
+        font-weight: 400;
+        color: rgb(42, 41, 136);
+        letter-spacing: 0.2rem;
+      }
+
+      .subtitulo {
+        font-size: 1rem;
+        font-weight: 400;
+        letter-spacing: 0.15rem;
+      }
+
+      main {
+        padding: 0 5%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cartao {
+        box-shadow: 0px 2px 3px 2px #e6e6e6;
+        width: 35vw;
+        height: 250px;
+        display: flex;
+        align-items: center;
+        align-content: stretch;
+        padding: 2%;
+        border-radius: 1%;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+      }
+
+      .cartao h4 {
+        color: rgb(42, 41, 136);
+        text-transform: uppercase;
+        font-size: 1.5rem;
+        letter-spacing: 0.15rem;
+        font-weight: 300;
+        width: 100%;
+        text-align: center;
+        line-height: 1;
+      }
+
+      .rele {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        justify-content: space-evenly;
+      }
+
+      .on-off {
+        color: #fff;
+        background-color: rgb(78 85 208);
+        text-transform: uppercase;
+        font-size: 1.25rem;
+        padding: 5%;
+        border-width: 1px;
+        border-color: rgb(42, 41, 136);
+        border: none;
+        box-shadow: 0 1px 1px 1px #2d36d6;
+        width: 120px;
+        cursor: pointer;
+      }
+
+      .on-off:active {
+        margin-top: 10px;
+      }
+
+      .btn {
+        color: #fff;
+        background-color: rgb(78 85 208);
+        text-transform: uppercase;
+        font-size: 1rem;
+        padding: 1%;
+        border-width: 1px;
+        border-color: rgb(42, 41, 136);
+        border: none;
+        box-shadow: 0 1px 1px 1px #2d36d6;
+        width: 300px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 5%;
+        align-items: center;
+      }
+
+      .lampada {
+        font-size: 5rem;
+        color: #ffe482;
+      }
+
+      .controle-temperatura {
+        flex-wrap: wrap;
+        flex-direction: row;
+      }
+
+      .secao-cartao {
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+      }
+
+      .secao-cartao > * {
+        margin-bottom: 2vh;
+      }
+
+      .entrada-numeros {
+        width: 45px;
+        text-align: center;
+        font-family: "Roboto", sans-serif;
+        width: 45px;
+      }
+
+      .fade-in-fade-out {
+        animation: fadeInfadeOut 1s;
+      }
+
+      @keyframes fadeInfadeOut {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 700px) {
+        main {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .cartao {
+          width: 100%;
+        }
+
+        .btn {
+          margin-top: 10%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 class="titulo">Fagiu</h1>
+      <h3 class="subtitulo">Automação Industrial</h3>
+    </header>
+    <main>
+      <div class="cartao">
+        <div class="rele">
+          <h4 class="underline">Rele 1</h4>
+
+          {% if olho_esq %}
+          <i class="lampada fas fa-lightbulb"></i>
+          <button
+            class="on-off"
+            type="button"
+            onclick="window.location.href='/olho_esq/0';"
+          >
+            Desligar
+          </button>
+
+          {% else %}
+          <i class="lampada far fa-lightbulb"></i>
+          <button
+            class="on-off"
+            type="button"
+            onclick="window.location.href='/olho_esq/1';"
+          >
+            Ligar
+          </button>
+          {% endif %}
+        </div>
+        <div class="rele">
+          <h4 class="underline">Rele 2</h4>
+
+          {% if olho_dir %}
+          <i class="lampada fas fa-lightbulb"></i>
+          <button
+            class="on-off"
+            type="button"
+            onclick="window.location.href='/olho_dir/0';"
+          >
+            Desligar
+          </button>
+
+          {% else %}
+          <i class="lampada far fa-lightbulb"></i>
+          <button
+            class="on-off"
+            type="button"
+            onclick="window.location.href='/olho_dir/1';"
+          >
+            Ligar
+          </button>
+          {% endif %}
+        </div>
+      </div>
+      <button class="btn" type="button" onclick="window.location.href='/temp';">
+        <i class="fas fa-thermometer-half"></i> Controle de Temperatura
+      </button>
+    </main>
+  </body>
+</html>
