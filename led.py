@@ -1,10 +1,11 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import datetime
 import subprocess
 import RPi.GPIO as GPIO
 import os
 import glob
 import time
+
  
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
@@ -24,6 +25,8 @@ estado = {'olho_esq' : False, 'olho_dir' : False }
 olho_esq = 16
 
 olho_dir = 18
+
+setpoint = None
 
 GPIO.setup(olho_esq, GPIO.OUT)
 
@@ -87,6 +90,12 @@ def desl_olho_dir():
 def mostrar_temp():
   temp = read_temp()
   return render_template('temperatura.html', temperatura=temp)
+
+@app.route("/temp", methods = ['POST'])
+def receber_setpoint():
+    setpoint = request.get_json()["setpoint"]
+    print(setpoint)
+    return setpoint
 
 def mostra_estado():
   estado = {
